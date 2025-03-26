@@ -1,55 +1,258 @@
+/* Global Reset and Box Model */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Body Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     line-height: 1.6;
-    background-color: #f4f4f4;
-    color: #333;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url('https://unsplash.com/fr/photos/photographie-en-contre-plongee-dune-structure-metallique-ZiQkhI7417A') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
     padding: 20px;
+    min-height: 100vh;
+    text-align: center;
 }
 
+/* Header Styles */
 header {
-    text-align: center;
-    margin-bottom: 30px;
+    padding: 50px 0;
+    color: #fff;
+    text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.7);
 }
 
 header h1 {
     font-size: 3rem;
-    color: #333;
+    margin-bottom: 10px;
+    color: #ffffff;
 }
 
 header p {
     font-size: 1.2rem;
-    color: #555;
+    color: #ddd;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
 }
 
+/* Section Styles */
 section {
-    margin-bottom: 40px;
+    margin-bottom: 60px;
+    padding: 20px 0;
 }
 
-h2 {
+/* About Section */
+#about {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 40px 20px;
+    border-radius: 10px;
+}
+
+#about h2 {
     font-size: 2rem;
-    color: #333;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
-ul {
-    list-style-type: none;
+#about p {
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto 20px;
 }
 
-ul li {
-    margin: 10px 0;
+#about img {
+    border-radius: 50%;
+    margin-top: 20px;
+    width: 150px;
+    height: 150px;
 }
 
-a {
-    color: #007bff;
+/* Professional Experience */
+#professional-experience {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 40px 20px;
+    border-radius: 10px;
+}
+
+#professional-experience h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+#professional-experience ul {
+    list-style: none;
+}
+
+#professional-experience li {
+    margin-bottom: 20px;
+}
+
+#professional-experience h3 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    color: #00bcd4;
+}
+
+#professional-experience p {
+    font-size: 1.1rem;
+    color: #ddd;
+}
+
+#professional-experience em {
+    color: #bbb;
+}
+
+/* Projects Section */
+#projects {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 40px 20px;
+    border-radius: 10px;
+}
+
+#projects h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+#projects ul {
+    list-style: none;
+}
+
+#projects li {
+    margin-bottom: 20px;
+}
+
+#projects a {
+    font-size: 1.2rem;
+    color: #00bcd4;
     text-decoration: none;
 }
 
-a:hover {
+#projects a:hover {
     text-decoration: underline;
+}
+
+#projects p {
+    color: #ddd;
+    font-size: 1.1rem;
+}
+
+/* Education Section */
+#education {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 40px 20px;
+    border-radius: 10px;
+}
+
+#education h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+#education ul {
+    list-style: none;
+}
+
+#education li {
+    margin-bottom: 20px;
+}
+
+#education h3 {
+    font-size: 1.5rem;
+    color: #00bcd4;
+}
+
+#education p {
+    font-size: 1.1rem;
+    color: #ddd;
+}
+
+/* Skills Section */
+#skills {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 40px 20px;
+    border-radius: 10px;
+}
+
+#skills h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+#skills ul {
+    list-style: none;
+    font-size: 1.2rem;
+}
+
+#skills li {
+    margin-bottom: 10px;
+}
+
+#skills strong {
+    color: #00bcd4;
+}
+
+/* Contact Section */
+#contact {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 40px 20px;
+    border-radius: 10px;
+}
+
+#contact h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+#contact p {
+    font-size: 1.1rem;
+    color: #ddd;
+}
+
+#contact a {
+    color: #00bcd4;
+    text-decoration: none;
+}
+
+#contact a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    margin-top: 50px;
+    color: #ddd;
+}
+
+footer p {
+    font-size: 1rem;
+    color: #bbb;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 2.5rem;
+    }
+
+    #about img {
+        width: 120px;
+        height: 120px;
+    }
+
+    #about p {
+        font-size: 1rem;
+    }
+
+    #professional-experience h2, #projects h2, #education h2, #skills h2, #contact h2 {
+        font-size: 1.5rem;
+    }
+
+    #projects a, #skills ul li {
+        font-size: 1rem;
+    }
 }
