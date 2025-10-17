@@ -1,112 +1,358 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio of Imane Oujja, Software Developer and AI Enthusiast">
-    <title>Imane Oujja - Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Portfolio d'Imane Oujja — EPFL MSc (CS) • Software Dev • ML • Robotics" />
+  <title>Imane Oujja — Portfolio</title>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <meta name="theme-color" content="#0b0610">
 </head>
 <body>
-    <header>
-        <h1>Welcome to My Portfolio!</h1>
-        <p>I’m <strong>Imane Oujja</strong>, a <strong>Communication Systems student at EPFL</strong>, currently on exchange at the <strong>University of Edinburgh</strong>. Passionate about <strong>Data Science, AI, and Software Development</strong>, I thrive in dynamic environments requiring <strong>problem-solving</strong> and <strong>strategic thinking</strong>.</p>
+  <!-- animated canvas background -->
+  <canvas id="bg3d"></canvas>
+
+  <main id="site" role="main">
+    <!-- HERO -->
+    <header class="hero panel glass">
+      <div class="hero-inner">
+        <div class="hero-left">
+          <h1 class="name">Imane <span class="accent">Oujja</span></h1>
+          <p class="role">MSc Computer Science (EPFL) • Software Developer • Machine Learning • Robotics</p>
+
+          <p class="intro">
+            EPFL Master’s student (2025–2027). Je crée des systèmes logiciels robustes et des pipelines ML — de la robotique temps réel aux architectures deep learning. Disponible pour stages & collaborations.
+          </p>
+
+          <div class="contacts">
+            <a class="btn" href="mailto:i.oujja@gmail.com">✉️ i.oujja@gmail.com</a>
+            <a class="btn outline" href="https://www.linkedin.com/in/imane-oujja-65165011a" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn outline" href="https://github.com/imaneoujja" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn ghost" href="Imane Oujja EPFL CV.pdf" download>⬇️ Télécharger le CV</a>
+          </div>
+
+          <div class="quick-meta">
+            <span><strong>Lieu:</strong> Lausanne, Switzerland</span>
+            <span><strong>Email:</strong> i.oujja@gmail.com</span>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="profile-card">
+            <div class="avatar">
+              <!-- svg monogram -->
+              <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                <defs>
+                  <linearGradient id="avgrad" x1="0" x2="1">
+                    <stop offset="0" stop-color="#7b2cbf"/>
+                    <stop offset="1" stop-color="#4a3bff"/>
+                  </linearGradient>
+                </defs>
+                <rect rx="18" width="120" height="120" fill="url(#avgrad)"/>
+                <text x="50%" y="54%" fill="#fff" font-size="40" font-family="Inter, system-ui" text-anchor="middle" alignment-baseline="middle">IO</text>
+              </svg>
+            </div>
+
+            <div class="profile-meta">
+              <h3>Imane Oujja</h3>
+              <p class="muted small">EPFL — MSc Computer Science (2025–2027)</p>
+              <div class="skills-inline">
+                <span>Python</span><span>Java</span><span>C</span><span>Scala</span><span>ML</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </header>
 
-    <section id="about">
-        <h2>About Me</h2>
-        <p>I'm a passionate software developer, currently exploring new frontiers in AI, and data science. With experience ranging from hands-on development to mentoring others in programming, I aim to impact the world through technological innovation and mentorship.</p>
+    <!-- ABOUT -->
+    <section id="about" class="panel appear">
+      <h2>À propos</h2>
+      <p>
+        Passionnée par la création d'outils intelligents et robustes. J'aime transformer des idées complexes en code
+        propre — que ce soit pour la robotique, des systèmes temps réel ou des pipelines de machine learning.
+      </p>
     </section>
 
-<section id="professional-experience">
-    <h2>💼 Professional Experience</h2>
-    <ul>
-        <li>
-            <h3>JPMorgan Chase | SWE Spring Intern</h3>
-            <p><em>April 2025, Glasgow, UK</em></p>
-            <p>Selected for the <strong>Spring into Software Engineering Program</strong>, gaining exposure to large-scale financial systems and software engineering challenges.</p>
-        </li>
-        <li>
-            <h3>Dare | Women in Trading Program Intern</h3>
-            <p><em>Feb 2025, London, UK</em></p>
-            <p>Gained hands-on experience in <strong>energy trading and market analysis</strong> by working on an energy project. Shadowed traders during live trading windows and engaged in Q&A sessions with industry professionals.</p>
-        </li>
-        <li>
-            <h3>HumanEd | Software Developer</h3>
-            <p><em>Since Sept 2024, Edinburgh, UK</em></p>
-            <p>Developing <strong>robotics software</strong>, focusing on enhancing hand movement systems and mentoring new members to accelerate their onboarding and contributions.</p>
-        </li>
-        <li>
-            <h3>TechSpark Academy | Programming Instructor</h3>
-            <p><em>Since July 2024, Online</em></p>
-            <p>Teaching <strong>Python programming</strong> to young students, fostering early engagement in technology and empowering the next generation of developers.</p>
-        </li>
-        <li>
-            <h3>EPFL | Teaching Assistant</h3>
-            <p><em>2023 - 2024, Lausanne, Switzerland</em></p>
-            <p>Assisted in <strong>Numerical Analysis (Python), Calculus, Algebra, and Physics</strong> for CS students. Supported the professors in conducting lectures and lab sessions, grading assignments, and offering extra guidance to students.</p>
-        </li>
-    </ul>
-</section>
+    <!-- EXPERIENCE -->
+    <section id="experience" class="panel appear">
+      <h2>💼 Expérience</h2>
+      <div class="grid">
+        <!-- MATISA -->
+        <article class="card">
+          <div class="card-head">
+            <img class="logo" src="https://cdn.simpleicons.org/matisa/ffffff" alt="MATISA logo" onerror="this.src='https://cdn.simpleicons.org/github/ffffff'">
+            <div>
+              <h3>MATISA S.A.</h3>
+              <p class="muted">ERP Data Analyst Intern — Crissier, Switzerland • July - Aug 2025</p>
+            </div>
+          </div>
+          <p class="card-body">
+            Analyse d'extractions de données à grande échelle; validation et amélioration de la qualité des données
+            pour ventes, achats et production. Mise en place de procédures de contrôle interne.
+          </p>
+        </article>
 
+        <!-- JPM -->
+        <article class="card">
+          <div class="card-head">
+            <img class="logo" src="https://cdn.simpleicons.org/jpmorganchase/ffffff" alt="JPMorgan Chase logo">
+            <div>
+              <h3>JPMorgan Chase</h3>
+              <p class="muted">Spring into Software Engineering — Glasgow, UK • April 2025</p>
+            </div>
+          </div>
+          <p class="card-body">
+            Participation au hackathon Code for Good (web app pour mentorat), ateliers techniques (TDD, Git),
+            et exposure aux systèmes logiciels financiers. Offre directe reçue pour internship 2026.
+          </p>
+        </article>
 
-    <section id="projects">
-        <h2>📈 Projects</h2>
-        <ul>
-            <li>
-                <h3><a href="https://github.com/imaneoujja/Image-oriented-File-System" target="_blank">ImgFS – Image-Oriented File System</a></h3>
-                <p>Developed a custom file system inspired by Facebook’s Haystack, optimizing image storage and retrieval.</p>
-            </li>
-            <li>
-                <h3><a href="https://github.com/imaneoujja/Javions" target="_blank">Javions – ADS-B Aircraft Tracking System</a></h3>
-                <p>Built a system to decode and visualize real-time aircraft positions using ADS-B messages. Live data collection via AirSpy R2 and interactive trajectory visualization.</p>
-            </li>
-            <li>
-                <h3><a href="https://github.com/imaneoujja/Fashion-MNIST-ML" target="_blank">Deep Learning for Fashion Classification</a></h3>
-                <p>Designed a multi-model deep learning pipeline (CNNs, Transformers, MLPs) to classify fashion items, with PCA for dimensionality reduction.</p>
-            </li>
-            <li>
-                <h3><a href="https://github.com/imaneoujja/Stanford-Dogs-ML" target="_blank">Stanford Dogs Dataset – ML Classification</a></h3>
-                <p>Implemented Logistic Regression, KNN, and Linear Regression to classify dog breeds and locate their center in images.</p>
-            </li>
-        </ul>
+        <!-- HumanEd -->
+        <article class="card">
+          <div class="card-head">
+            <img class="logo" src="https://cdn.simpleicons.org/github/ffffff" alt="HumanEd / GitHub">
+            <div>
+              <h3>HumanEd</h3>
+              <p class="muted">Software Developer — Edinburgh, UK • Sept 2024 - Apr 2025</p>
+            </div>
+          </div>
+          <p class="card-body">
+            Contribué à l'amélioration du système de mouvement de la main d'un robot humanoïde, et mentorat des nouveaux membres.
+          </p>
+        </article>
+
+        <!-- EPFL TA -->
+        <article class="card">
+          <div class="card-head">
+            <img class="logo" src="https://cdn.simpleicons.org/epfl/ffffff" alt="EPFL logo">
+            <div>
+              <h3>EPFL</h3>
+              <p class="muted">Teaching Assistant & Student Mentor — Lausanne, Switzerland • Since Feb 2023</p>
+            </div>
+          </div>
+          <p class="card-body">
+            Assistance en Numerical Analysis (Python), Calculus, et Physique; mentorat hebdomadaire de 15 étudiants CS.
+          </p>
+        </article>
+      </div>
     </section>
 
-    <section id="education">
-        <h2>📚 Education</h2>
-        <ul>
-            <li>
-                <h3>BSc in Communication Systems, EPFL</h3>
-                <p><em>2022 - 2025</em></p>
-                <p>Courses include Algorithms, Probability and Statistics, Machine Learning, Databases, and Digital Communications.</p>
-            </li>
-            <li>
-                <h3>Exchange Program, University of Edinburgh</h3>
-                <p><em>2024 - 2025</em></p>
-            </li>
-        </ul>
+    <!-- PROJECTS -->
+    <section id="projects" class="panel appear">
+      <h2>📈 Projets</h2>
+      <div class="grid">
+        <article class="project">
+          <div class="project-meta">
+            <img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" class="proj-logo">
+            <div>
+              <h3><a href="https://github.com/imaneoujja/Image-oriented-File-System" target="_blank" rel="noopener">ImgFS — Image-Oriented File System</a></h3>
+              <p class="muted">C • File Systems — add/extract/list</p>
+            </div>
+          </div>
+          <p>Développé un format et utilitaires pour stocker et récupérer des images efficacement, inspiré par Haystack.</p>
+        </article>
+
+        <article class="project">
+          <div class="project-meta">
+            <img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" class="proj-logo">
+            <div>
+              <h3><a href="https://github.com/imaneoujja/Javions" target="_blank" rel="noopener">Javions — ADS-B Aircraft Tracking</a></h3>
+              <p class="muted">Java • JavaFX • Real-time systems</p>
+            </div>
+          </div>
+          <p>Système de décodage ADS-B et visualisation des trajectoires via AirSpy R2.</p>
+        </article>
+
+        <article class="project">
+          <div class="project-meta">
+            <img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" class="proj-logo">
+            <div>
+              <h3><a href="https://github.com/imaneoujja/Fashion-MNIST-ML" target="_blank" rel="noopener">Deep Learning — Fashion Classification</a></h3>
+              <p class="muted">Python • TensorFlow • PCA</p>
+            </div>
+          </div>
+          <p>Pipeline multi-architecture (CNN, Transformer, MLP) pour classification d'articles de mode et expérimentation PCA.</p>
+        </article>
+      </div>
     </section>
 
-    <section id="skills">
-        <h2>🛠 Skills</h2>
-        <ul>
-            <li><strong>Programming:</strong> Python, Java, C, C++, Scala, SQL</li>
-            <li><strong>Machine Learning & AI:</strong> TensorFlow, Scikit-learn, PCA, Deep Learning (MLPs, CNNs, Transformers)</li>
-            <li><strong>Tools:</strong> Git, Linux, Shell Scripting</li>
-            <li><strong>Interpersonal & Leadership:</strong> Problem-Solving, Mentorship, Team Leadership</li>
-        </ul>
+    <!-- EDUCATION -->
+    <section id="education" class="panel appear">
+      <h2>📚 Éducation</h2>
+      <ul class="edu-list">
+        <li><strong>EPFL — MSc Computer Science</strong> (2025 – 2027)</li>
+        <li><strong>The University of Edinburgh — Exchange</strong> (2024 – 2025)</li>
+        <li><strong>EPFL — BSc Communication Systems</strong> (2022 – 2025)</li>
+      </ul>
+
+      <p class="muted small" style="margin-top:10px">
+        Cours notables : Algorithms, Software Construction, Databases, OOP, Machine Learning, Stochastic Modeling, Digital Communications.
+      </p>
     </section>
 
-    <section id="contact">
-        <h2>✨ Let’s Connect!</h2>
-        <p><strong>Email:</strong> <a href="mailto:i.oujja@gmail.com">i.oujja@gmail.com</a></p>
-        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/imane-oujja-65165011a" target="_blank">linkedin.com/in/imane-oujja</a></p>
-        <p><strong>GitHub:</strong> <a href="https://github.com/ImaneOujja" target="_blank">github.com/ImaneOujja</a></p>
+    <!-- VOLUNTEERING -->
+    <section id="volunteering" class="panel appear">
+      <h2>🤝 Volunteering</h2>
+      <ul>
+        <li><strong>Students 4 Students</strong> — Volunteer, Lausanne (June - Sept 2024)</li>
+        <li><strong>EPFelles</strong> — Vice President (Feb 2023 - July 2024)</li>
+        <li><strong>Service Civil International</strong> — Community Volunteer, Nendaz (July 2023)</li>
+      </ul>
     </section>
 
-    <footer>
-        <p>&copy; 2025 Imane Oujja. All rights reserved.</p>
+    <!-- LANGUAGES & SKILLS -->
+    <section id="skills" class="panel appear">
+      <h2>🛠 Languages & Skills</h2>
+      <div class="two-col">
+        <div>
+          <h3>Languages</h3>
+          <ul>
+            <li>French — Bilingual</li>
+            <li>English — Advanced</li>
+            <li>Arabic — Native</li>
+            <li>Spanish — Intermediate</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Technical</h3>
+          <ul>
+            <li>Python, Java, C, Scala, SQL</li>
+            <li>TensorFlow, Scikit-learn, PCA, Deep Learning (CNNs, Transformers)</li>
+            <li>Git, Linux, Shell scripting, LaTeX, MS Office</li>
+            <li>Concepts: ML, Data Analysis, File Systems, OOP, Functional Programming</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="panel footer appear">
+      <p>&copy; 2025 Imane Oujja • Lausanne, Switzerland • <span class="muted">Portfolio généré</span></p>
     </footer>
+  </main>
+
+  <!-- Scripts: background + simple interactions -->
+  <script>
+  /* ========== 3D rotating gradient + starfield background ========== */
+  (function(){
+    const canvas = document.getElementById('bg3d');
+    const ctx = canvas.getContext('2d');
+    let w = canvas.width = innerWidth;
+    let h = canvas.height = innerHeight;
+    window.addEventListener('resize', ()=>{ w = canvas.width = innerWidth; h = canvas.height = innerHeight; initStars(); });
+
+    // stars
+    let stars = [];
+    const STAR_COUNT = Math.round((w*h)/60000) + 120;
+
+    function rand(a,b){ return Math.random()*(b-a)+a; }
+
+    function initStars(){
+      stars = [];
+      for(let i=0;i<STAR_COUNT;i++){
+        stars.push({
+          x: Math.random()*w,
+          y: Math.random()*h,
+          z: Math.random()*1.2,
+          r: Math.random()*1.4 + 0.2,
+          hue: rand(240,360)
+        });
+      }
+    }
+    initStars();
+
+    let angle = 0;
+    function draw(){
+      angle += 0.002;
+
+      // background: rotating radial gradient (gives depth/3D feel)
+      ctx.clearRect(0,0,w,h);
+      const cx = w/2 + Math.sin(angle*0.8)*w*0.08;
+      const cy = h/2 + Math.cos(angle*0.6)*h*0.06;
+      const rg = ctx.createRadialGradient(cx, cy, Math.min(w,h)*0.08, cx, cy, Math.max(w,h)*0.9);
+      rg.addColorStop(0, 'rgba(123,44,191,0.20)'); // violet
+      rg.addColorStop(0.35, 'rgba(74,59,255,0.14)'); // blue
+      rg.addColorStop(0.7, 'rgba(138,21,56,0.10)'); // grenat
+      rg.addColorStop(1, 'rgba(6,3,6,0.95)'); // dark edges
+      ctx.fillStyle = rg;
+      ctx.fillRect(0,0,w,h);
+
+      // subtle moving bands
+      ctx.globalCompositeOperation = 'lighter';
+      for(let i=0;i<4;i++){
+        ctx.beginPath();
+        const y = h * (0.15 + i*0.22) + Math.sin(angle*1.2 + i) * 60;
+        ctx.moveTo(0,y);
+        for(let x=0;x<w;x+=40){
+          ctx.lineTo(x, y + Math.sin(x*0.01 + angle*1.1 + i)*40);
+        }
+        ctx.lineTo(w,h);
+        ctx.lineTo(0,h);
+        ctx.closePath();
+        ctx.fillStyle = `rgba(${20+i*10}, ${8+i*6}, ${30+i*20}, ${0.03 + i*0.02})`;
+        ctx.fill();
+      }
+
+      // draw stars with parallax
+      for(let s of stars){
+        // parallax effect via z
+        const sx = (s.x - w/2) * (1 + s.z*0.6) + w/2 + Math.sin(angle*0.8 + s.z*6)*10*s.z;
+        const sy = (s.y - h/2) * (1 + s.z*0.6) + h/2 + Math.cos(angle*0.6 + s.z*6)*8*s.z;
+        const r = s.r * (1 + s.z);
+        // glow
+        const g = ctx.createRadialGradient(sx, sy, 0, sx, sy, r*8);
+        g.addColorStop(0, `hsla(${s.hue},80%,70%,0.14)`);
+        g.addColorStop(1, `hsla(${s.hue},80%,70%,0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        ctx.arc(sx, sy, r*8, 0, Math.PI*2);
+        ctx.fill();
+
+        // core
+        ctx.beginPath();
+        ctx.fillStyle = `hsla(${s.hue},80%,75%,0.9)`;
+        ctx.arc(sx, sy, r, 0, Math.PI*2);
+        ctx.fill();
+      }
+
+      ctx.globalCompositeOperation = 'source-over';
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+
+  /* reveal on scroll */
+  (function(){
+    const els = document.querySelectorAll('.appear');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); }
+      });
+    }, {threshold: 0.08});
+    els.forEach(el=>io.observe(el));
+  })();
+
+  /* card hover tilt */
+  (function(){
+    const cards = document.querySelectorAll('.card, .project, .profile-card');
+    cards.forEach(card=>{
+      card.addEventListener('mousemove', e=>{
+        const r = card.getBoundingClientRect();
+        const mx = e.clientX - r.left; const my = e.clientY - r.top;
+        const px = (mx / r.width - 0.5) * 10;
+        const py = (my / r.height - 0.5) * 8;
+        card.style.transform = `rotateY(${px}deg) rotateX(${-py}deg) translateZ(0)`;
+      });
+      card.addEventListener('mouseleave', ()=> card.style.transform = '');
+    });
+  })();
+  </script>
 </body>
 </html>
-
