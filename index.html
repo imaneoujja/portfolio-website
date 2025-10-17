@@ -2,67 +2,99 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Portfolio d'Imane Oujja — EPFL MSc (CS) • Software Dev • ML • Robotics" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Imane Oujja — Portfolio</title>
-
-  <!-- Font -->
+  <meta name="description" content="Interactive bilingual portfolio — EPFL MSc CS • Software Dev • ML • Robotics" />
+  <meta name="theme-color" content="#07040a" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css">
-
-  <meta name="theme-color" content="#0b0610">
+  <style>
+    :root{
+      --bg-900:#07040a; --txt:#eee8f7; --muted:#b9a6c8;
+      --a1:#7b2cbf; --a2:#4a3bff; --a3:#8a1538; --glass:rgba(255,255,255,.04);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial; background:var(--bg-900); color:var(--txt); overflow-x:hidden;}
+    #bg{position:fixed; inset:0; width:100vw; height:100vh; z-index:0}
+    main{position:relative; z-index:2; max-width:1100px; margin:36px auto; padding:18px}
+    .panel{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01)); border:1px solid rgba(255,255,255,.06); border-radius:16px; padding:22px; margin-bottom:18px; box-shadow:0 10px 40px rgba(0,0,0,.55); opacity:0; transform:translateY(12px); transition:opacity .6s, transform .6s cubic-bezier(.18,.8,.24,1); backdrop-filter:blur(6px)}
+    .panel.in{opacity:1; transform:none}
+    header.hero .grid{display:flex; gap:18px; align-items:center; flex-wrap:wrap; justify-content:space-between}
+    .name{font-size:2.7rem; font-weight:800; margin:0}
+    .accent{background:linear-gradient(90deg, var(--a1), var(--a2)); -webkit-background-clip:text; background-clip:text; color:transparent}
+    .role{color:var(--muted); margin:.4rem 0 1rem; font-weight:600}
+    .intro{max-width:60ch; color:#ddd}
+    .btns{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+    .btn{display:inline-block; padding:9px 12px; border-radius:10px; font-weight:600; text-decoration:none; color:#fff; border:1px solid rgba(255,255,255,.08); background:linear-gradient(90deg, rgba(74,59,255,.12), rgba(123,44,191,.08)); transition:transform .18s, box-shadow .18s}
+    .btn:hover{transform:translateY(-3px); box-shadow:0 10px 24px rgba(70,30,160,.16)}
+    .btn.ghost{background:transparent; color:var(--muted)}
+    .quick{display:flex; gap:14px; flex-wrap:wrap; color:var(--muted); margin-top:8px}
+    .card, .project, .profile{border:1px solid rgba(255,255,255,.06); border-radius:14px; padding:14px; background:linear-gradient(180deg, rgba(255,255,255,.015), rgba(255,255,255,.005)); transition:transform .2s, box-shadow .2s; will-change:transform; transform-style:preserve-3d}
+    .card:hover, .project:hover, .profile:hover{transform:translateY(-8px); box-shadow:0 18px 44px rgba(18,6,34,.55)}
+    .grid-cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px}
+    .head{display:flex; gap:12px; align-items:center}
+    .logo{width:44px; height:44px; border-radius:8px; padding:6px; background:linear-gradient(90deg,var(--a1),var(--a2))}
+    .muted{color:var(--muted)}
+    .small{font-size:.9rem}
+    .skills{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px}
+    .chip{font-size:.8rem; padding:6px 8px; border-radius:8px; background:rgba(255,255,255,.03)}
+    .projects{margin-top:10px}
+    .project .meta{display:flex; gap:10px; align-items:center; margin-bottom:6px}
+    .projlogo{width:34px; height:34px; border-radius:8px; padding:6px; background:linear-gradient(90deg,var(--a2),var(--a3))}
+    .two{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+    footer{text-align:center; color:var(--muted)}
+    .topbar{position:fixed; top:14px; right:14px; z-index:3; display:flex; gap:8px}
+    .seg{display:inline-flex; border:1px solid rgba(255,255,255,.1); border-radius:10px; overflow:hidden}
+    .seg button{padding:8px 12px; background:transparent; color:#ddd; border:0; cursor:pointer; font-weight:600}
+    .seg button.active{background:linear-gradient(90deg, rgba(74,59,255,.25), rgba(123,44,191,.18))}
+    a{color:#dcd7ff}
+    @media (max-width:920px){
+      header.hero .grid{flex-direction:column-reverse}
+      .two{grid-template-columns:1fr}
+      main{margin:22px auto}
+    }
+  </style>
 </head>
 <body>
-  <!-- animated canvas background -->
-  <canvas id="bg3d"></canvas>
-
-  <main id="site" role="main">
-    <!-- HERO -->
-    <header class="hero panel glass">
-      <div class="hero-inner">
-        <div class="hero-left">
+  <canvas id="bg" aria-hidden></canvas>
+  <div class="topbar" aria-label="language switcher">
+    <div class="seg" role="tablist">
+      <button id="frBtn" class="active" role="tab" aria-selected="true">FR</button>
+      <button id="enBtn" role="tab" aria-selected="false">EN</button>
+    </div>
+  </div>
+  <main>
+    <header class="hero panel">
+      <div class="grid">
+        <div>
           <h1 class="name">Imane <span class="accent">Oujja</span></h1>
-          <p class="role">MSc Computer Science (EPFL) • Software Developer • Machine Learning • Robotics</p>
-
-          <p class="intro">
-            EPFL Master’s student (2025–2027). Je crée des systèmes logiciels robustes et des pipelines ML — de la robotique temps réel aux architectures deep learning. Disponible pour stages & collaborations.
-          </p>
-
-          <div class="contacts">
+          <p class="role" data-i18n="role"></p>
+          <p class="intro" data-i18n="intro"></p>
+          <div class="btns">
             <a class="btn" href="mailto:i.oujja@gmail.com">✉️ i.oujja@gmail.com</a>
-            <a class="btn outline" href="https://www.linkedin.com/in/imane-oujja-65165011a" target="_blank" rel="noopener">LinkedIn</a>
-            <a class="btn outline" href="https://github.com/imaneoujja" target="_blank" rel="noopener">GitHub</a>
-            <a class="btn ghost" href="Imane Oujja EPFL CV.pdf" download>⬇️ Télécharger le CV</a>
+            <a class="btn ghost" href="https://www.linkedin.com/in/imane-oujja-65165011a" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn ghost" href="https://github.com/imaneoujja" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn" href="Imane Oujja EPFL CV.pdf" download id="cvBtn">⬇︎ <span data-i18n="cv"></span></a>
           </div>
-
-          <div class="quick-meta">
-            <span><strong>Lieu:</strong> Lausanne, Switzerland</span>
-            <span><strong>Email:</strong> i.oujja@gmail.com</span>
+          <div class="quick small">
+            <span>📍 Lausanne, Switzerland</span>
+            <span>📫 i.oujja@gmail.com</span>
           </div>
         </div>
-
-        <div class="hero-right">
-          <div class="profile-card">
-            <div class="avatar">
-              <!-- svg monogram -->
-              <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                <defs>
-                  <linearGradient id="avgrad" x1="0" x2="1">
-                    <stop offset="0" stop-color="#7b2cbf"/>
-                    <stop offset="1" stop-color="#4a3bff"/>
-                  </linearGradient>
-                </defs>
-                <rect rx="18" width="120" height="120" fill="url(#avgrad)"/>
+        <div>
+          <div class="profile">
+            <div class="head">
+              <svg class="logo" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#7b2cbf"/><stop offset="1" stop-color="#4a3bff"/></linearGradient></defs>
+                <rect rx="18" width="120" height="120" fill="url(#g)"/>
                 <text x="50%" y="54%" fill="#fff" font-size="40" font-family="Inter, system-ui" text-anchor="middle" alignment-baseline="middle">IO</text>
               </svg>
-            </div>
-
-            <div class="profile-meta">
-              <h3>Imane Oujja</h3>
-              <p class="muted small">EPFL — MSc Computer Science (2025–2027)</p>
-              <div class="skills-inline">
-                <span>Python</span><span>Java</span><span>C</span><span>Scala</span><span>ML</span>
+              <div>
+                <h3>Imane Oujja</h3>
+                <p class="muted small">EPFL — MSc Computer Science (2025–2027)</p>
+                <div class="skills">
+                  <span class="chip">Python</span><span class="chip">Java</span><span class="chip">C</span><span class="chip">Scala</span><span class="chip">SQL</span>
+                </div>
               </div>
             </div>
           </div>
@@ -70,289 +102,250 @@
       </div>
     </header>
 
-    <!-- ABOUT -->
-    <section id="about" class="panel appear">
-      <h2>À propos</h2>
-      <p>
-        Passionnée par la création d'outils intelligents et robustes. J'aime transformer des idées complexes en code
-        propre — que ce soit pour la robotique, des systèmes temps réel ou des pipelines de machine learning.
-      </p>
-    </section>
-
-    <!-- EXPERIENCE -->
-    <section id="experience" class="panel appear">
-      <h2>💼 Expérience</h2>
-      <div class="grid">
-        <!-- MATISA -->
-        <article class="card">
-          <div class="card-head">
-            <img class="logo" src="https://cdn.simpleicons.org/matisa/ffffff" alt="MATISA logo" onerror="this.src='https://cdn.simpleicons.org/github/ffffff'">
+    <section class="panel" id="experience">
+      <h2>💼 <span data-i18n="expTitle"></span></h2>
+      <div class="grid-cards">
+        <article class="card" data-tilt>
+          <div class="head">
+            <img class="logo" src="https://cdn.simpleicons.org/matisa/ffffff" alt="MATISA" onerror="this.src='https://cdn.simpleicons.org/buildkite/ffffff'"/>
             <div>
               <h3>MATISA S.A.</h3>
-              <p class="muted">ERP Data Analyst Intern — Crissier, Switzerland • July - Aug 2025</p>
+              <p class="muted small" data-i18n="exp1.when"></p>
             </div>
           </div>
-          <p class="card-body">
-            Analyse d'extractions de données à grande échelle; validation et amélioration de la qualité des données
-            pour ventes, achats et production. Mise en place de procédures de contrôle interne.
-          </p>
+          <p data-i18n="exp1.desc" class="small"></p>
         </article>
-
-        <!-- JPM -->
-        <article class="card">
-          <div class="card-head">
-            <img class="logo" src="https://cdn.simpleicons.org/jpmorganchase/ffffff" alt="JPMorgan Chase logo">
+        <article class="card" data-tilt>
+          <div class="head">
+            <img class="logo" src="https://cdn.simpleicons.org/jpmorganchase/ffffff" alt="JPMorgan Chase"/>
             <div>
               <h3>JPMorgan Chase</h3>
-              <p class="muted">Spring into Software Engineering — Glasgow, UK • April 2025</p>
+              <p class="muted small" data-i18n="exp2.when"></p>
             </div>
           </div>
-          <p class="card-body">
-            Participation au hackathon Code for Good (web app pour mentorat), ateliers techniques (TDD, Git),
-            et exposure aux systèmes logiciels financiers. Offre directe reçue pour internship 2026.
-          </p>
+          <p data-i18n="exp2.desc" class="small"></p>
         </article>
-
-        <!-- HumanEd -->
-        <article class="card">
-          <div class="card-head">
-            <img class="logo" src="https://cdn.simpleicons.org/github/ffffff" alt="HumanEd / GitHub">
+        <article class="card" data-tilt>
+          <div class="head">
+            <img class="logo" src="https://cdn.simpleicons.org/github/ffffff" alt="HumanEd"/>
             <div>
               <h3>HumanEd</h3>
-              <p class="muted">Software Developer — Edinburgh, UK • Sept 2024 - Apr 2025</p>
+              <p class="muted small" data-i18n="exp3.when"></p>
             </div>
           </div>
-          <p class="card-body">
-            Contribué à l'amélioration du système de mouvement de la main d'un robot humanoïde, et mentorat des nouveaux membres.
-          </p>
+          <p data-i18n="exp3.desc" class="small"></p>
         </article>
-
-        <!-- EPFL TA -->
-        <article class="card">
-          <div class="card-head">
-            <img class="logo" src="https://cdn.simpleicons.org/epfl/ffffff" alt="EPFL logo">
+        <article class="card" data-tilt>
+          <div class="head">
+            <img class="logo" src="https://cdn.simpleicons.org/epfl/ffffff" alt="EPFL"/>
             <div>
               <h3>EPFL</h3>
-              <p class="muted">Teaching Assistant & Student Mentor — Lausanne, Switzerland • Since Feb 2023</p>
+              <p class="muted small" data-i18n="exp4.when"></p>
             </div>
           </div>
-          <p class="card-body">
-            Assistance en Numerical Analysis (Python), Calculus, et Physique; mentorat hebdomadaire de 15 étudiants CS.
-          </p>
+          <p data-i18n="exp4.desc" class="small"></p>
         </article>
       </div>
     </section>
 
-    <!-- PROJECTS -->
-    <section id="projects" class="panel appear">
-      <h2>📈 Projets</h2>
-      <div class="grid">
-        <article class="project">
-          <div class="project-meta">
-            <img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" class="proj-logo">
+    <section class="panel" id="projects">
+      <h2>📈 <span data-i18n="projTitle"></span></h2>
+      <div class="projects grid-cards">
+        <article class="project" data-tilt>
+          <div class="meta">
+            <img class="projlogo" src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub"/>
             <div>
               <h3><a href="https://github.com/imaneoujja/Image-oriented-File-System" target="_blank" rel="noopener">ImgFS — Image-Oriented File System</a></h3>
-              <p class="muted">C • File Systems — add/extract/list</p>
+              <p class="muted small" data-i18n="proj1.stack"></p>
             </div>
           </div>
-          <p>Développé un format et utilitaires pour stocker et récupérer des images efficacement, inspiré par Haystack.</p>
+          <p class="small" data-i18n="proj1.desc"></p>
         </article>
-
-        <article class="project">
-          <div class="project-meta">
-            <img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" class="proj-logo">
+        <article class="project" data-tilt>
+          <div class="meta">
+            <img class="projlogo" src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub"/>
             <div>
               <h3><a href="https://github.com/imaneoujja/Javions" target="_blank" rel="noopener">Javions — ADS-B Aircraft Tracking</a></h3>
-              <p class="muted">Java • JavaFX • Real-time systems</p>
+              <p class="muted small" data-i18n="proj2.stack"></p>
             </div>
           </div>
-          <p>Système de décodage ADS-B et visualisation des trajectoires via AirSpy R2.</p>
+          <p class="small" data-i18n="proj2.desc"></p>
         </article>
-
-        <article class="project">
-          <div class="project-meta">
-            <img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" class="proj-logo">
+        <article class="project" data-tilt>
+          <div class="meta">
+            <img class="projlogo" src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub"/>
             <div>
               <h3><a href="https://github.com/imaneoujja/Fashion-MNIST-ML" target="_blank" rel="noopener">Deep Learning — Fashion Classification</a></h3>
-              <p class="muted">Python • TensorFlow • PCA</p>
+              <p class="muted small" data-i18n="proj3.stack"></p>
             </div>
           </div>
-          <p>Pipeline multi-architecture (CNN, Transformer, MLP) pour classification d'articles de mode et expérimentation PCA.</p>
+          <p class="small" data-i18n="proj3.desc"></p>
         </article>
       </div>
     </section>
 
-    <!-- EDUCATION -->
-    <section id="education" class="panel appear">
-      <h2>📚 Éducation</h2>
-      <ul class="edu-list">
-        <li><strong>EPFL — MSc Computer Science</strong> (2025 – 2027)</li>
-        <li><strong>The University of Edinburgh — Exchange</strong> (2024 – 2025)</li>
-        <li><strong>EPFL — BSc Communication Systems</strong> (2022 – 2025)</li>
+    <section class="panel" id="education">
+      <h2>📚 <span data-i18n="eduTitle"></span></h2>
+      <ul class="small" style="padding-left:18px">
+        <li data-i18n="edu1"></li>
+        <li data-i18n="edu2"></li>
+        <li data-i18n="edu3"></li>
       </ul>
-
-      <p class="muted small" style="margin-top:10px">
-        Cours notables : Algorithms, Software Construction, Databases, OOP, Machine Learning, Stochastic Modeling, Digital Communications.
-      </p>
+      <p class="muted small" data-i18n="courses" style="margin-top:8px"></p>
     </section>
 
-    <!-- VOLUNTEERING -->
-    <section id="volunteering" class="panel appear">
-      <h2>🤝 Volunteering</h2>
-      <ul>
-        <li><strong>Students 4 Students</strong> — Volunteer, Lausanne (June - Sept 2024)</li>
-        <li><strong>EPFelles</strong> — Vice President (Feb 2023 - July 2024)</li>
-        <li><strong>Service Civil International</strong> — Community Volunteer, Nendaz (July 2023)</li>
+    <section class="panel" id="volunteering">
+      <h2>🤝 <span data-i18n="volTitle"></span></h2>
+      <ul class="small" style="padding-left:18px">
+        <li data-i18n="vol1"></li>
+        <li data-i18n="vol2"></li>
+        <li data-i18n="vol3"></li>
       </ul>
     </section>
 
-    <!-- LANGUAGES & SKILLS -->
-    <section id="skills" class="panel appear">
-      <h2>🛠 Languages & Skills</h2>
-      <div class="two-col">
+    <section class="panel" id="skills">
+      <h2>🛠 <span data-i18n="skillsTitle"></span></h2>
+      <div class="two">
         <div>
           <h3>Languages</h3>
-          <ul>
+          <ul class="small" style="padding-left:18px">
             <li>French — Bilingual</li>
             <li>English — Advanced</li>
             <li>Arabic — Native</li>
             <li>Spanish — Intermediate</li>
           </ul>
         </div>
-
         <div>
           <h3>Technical</h3>
-          <ul>
+          <ul class="small" style="padding-left:18px">
             <li>Python, Java, C, Scala, SQL</li>
-            <li>TensorFlow, Scikit-learn, PCA, Deep Learning (CNNs, Transformers)</li>
-            <li>Git, Linux, Shell scripting, LaTeX, MS Office</li>
-            <li>Concepts: ML, Data Analysis, File Systems, OOP, Functional Programming</li>
+            <li>TensorFlow, Scikit-learn, PCA</li>
+            <li>Git, Linux, Shell, LaTeX, MS Office</li>
+            <li>ML, Data Analysis, File Systems, OOP, FP</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="panel footer appear">
-      <p>&copy; 2025 Imane Oujja • Lausanne, Switzerland • <span class="muted">Portfolio généré</span></p>
+    <footer class="panel">
+      <p class="small">© 2025 Imane Oujja — Lausanne, Switzerland • <span class="muted">Dark mode • Interactive • Bilingual</span></p>
     </footer>
   </main>
 
-  <!-- Scripts: background + simple interactions -->
   <script>
-  /* ========== 3D rotating gradient + starfield background ========== */
+  // ====== Animated background (soft nebula + stars) ======
   (function(){
-    const canvas = document.getElementById('bg3d');
-    const ctx = canvas.getContext('2d');
-    let w = canvas.width = innerWidth;
-    let h = canvas.height = innerHeight;
-    window.addEventListener('resize', ()=>{ w = canvas.width = innerWidth; h = canvas.height = innerHeight; initStars(); });
-
-    // stars
-    let stars = [];
-    const STAR_COUNT = Math.round((w*h)/60000) + 120;
-
-    function rand(a,b){ return Math.random()*(b-a)+a; }
-
-    function initStars(){
-      stars = [];
-      for(let i=0;i<STAR_COUNT;i++){
-        stars.push({
-          x: Math.random()*w,
-          y: Math.random()*h,
-          z: Math.random()*1.2,
-          r: Math.random()*1.4 + 0.2,
-          hue: rand(240,360)
-        });
+    const c=document.getElementById('bg');const x=c.getContext('2d');
+    let w=c.width=innerWidth,h=c.height=innerHeight; addEventListener('resize',()=>{w=c.width=innerWidth;h=c.height=innerHeight;init()});
+    const R=()=>Math.random();
+    let stars=[]; let N;
+    function init(){stars=[]; N=Math.round((w*h)/70000)+120; for(let i=0;i<N;i++) stars.push({x:R()*w,y:R()*h,r:R()*1.3+.3,h:R()*120+240});}
+    init();
+    let t=0; function draw(){ t+=.003; x.clearRect(0,0,w,h);
+      const cx=w/2+Math.sin(t*.9)*w*.07, cy=h/2+Math.cos(t*.6)*h*.06;
+      const g=x.createRadialGradient(cx,cy,Math.min(w,h)*.08,cx,cy,Math.max(w,h)*.9);
+      g.addColorStop(0,'rgba(123,44,191,.18)'); g.addColorStop(.35,'rgba(74,59,255,.14)'); g.addColorStop(.7,'rgba(138,21,56,.10)'); g.addColorStop(1,'rgba(6,3,6,.96)');
+      x.fillStyle=g; x.fillRect(0,0,w,h);
+      x.globalCompositeOperation='lighter';
+      for(const s of stars){
+        const sx=(s.x-w/2)*(1+s.r*.6)+w/2+Math.sin(t*.8+s.r*6)*8*s.r;
+        const sy=(s.y-h/2)*(1+s.r*.6)+h/2+Math.cos(t*.6+s.r*6)*6+s.r;
+        const Rg=x.createRadialGradient(sx,sy,0,sx,sy,s.r*8); Rg.addColorStop(0,`hsla(${s.h},80%,70%,.12)`); Rg.addColorStop(1,`hsla(${s.h},80%,70%,0)`);
+        x.fillStyle=Rg; x.beginPath(); x.arc(sx,sy,s.r*8,0,Math.PI*2); x.fill();
+        x.fillStyle=`hsla(${s.h},80%,75%,.9)`; x.beginPath(); x.arc(sx,sy,s.r,0,Math.PI*2); x.fill();
       }
-    }
-    initStars();
-
-    let angle = 0;
-    function draw(){
-      angle += 0.002;
-
-      // background: rotating radial gradient (gives depth/3D feel)
-      ctx.clearRect(0,0,w,h);
-      const cx = w/2 + Math.sin(angle*0.8)*w*0.08;
-      const cy = h/2 + Math.cos(angle*0.6)*h*0.06;
-      const rg = ctx.createRadialGradient(cx, cy, Math.min(w,h)*0.08, cx, cy, Math.max(w,h)*0.9);
-      rg.addColorStop(0, 'rgba(123,44,191,0.20)'); // violet
-      rg.addColorStop(0.35, 'rgba(74,59,255,0.14)'); // blue
-      rg.addColorStop(0.7, 'rgba(138,21,56,0.10)'); // grenat
-      rg.addColorStop(1, 'rgba(6,3,6,0.95)'); // dark edges
-      ctx.fillStyle = rg;
-      ctx.fillRect(0,0,w,h);
-
-      // subtle moving bands
-      ctx.globalCompositeOperation = 'lighter';
-      for(let i=0;i<4;i++){
-        ctx.beginPath();
-        const y = h * (0.15 + i*0.22) + Math.sin(angle*1.2 + i) * 60;
-        ctx.moveTo(0,y);
-        for(let x=0;x<w;x+=40){
-          ctx.lineTo(x, y + Math.sin(x*0.01 + angle*1.1 + i)*40);
-        }
-        ctx.lineTo(w,h);
-        ctx.lineTo(0,h);
-        ctx.closePath();
-        ctx.fillStyle = `rgba(${20+i*10}, ${8+i*6}, ${30+i*20}, ${0.03 + i*0.02})`;
-        ctx.fill();
-      }
-
-      // draw stars with parallax
-      for(let s of stars){
-        // parallax effect via z
-        const sx = (s.x - w/2) * (1 + s.z*0.6) + w/2 + Math.sin(angle*0.8 + s.z*6)*10*s.z;
-        const sy = (s.y - h/2) * (1 + s.z*0.6) + h/2 + Math.cos(angle*0.6 + s.z*6)*8*s.z;
-        const r = s.r * (1 + s.z);
-        // glow
-        const g = ctx.createRadialGradient(sx, sy, 0, sx, sy, r*8);
-        g.addColorStop(0, `hsla(${s.hue},80%,70%,0.14)`);
-        g.addColorStop(1, `hsla(${s.hue},80%,70%,0)`);
-        ctx.fillStyle = g;
-        ctx.beginPath();
-        ctx.arc(sx, sy, r*8, 0, Math.PI*2);
-        ctx.fill();
-
-        // core
-        ctx.beginPath();
-        ctx.fillStyle = `hsla(${s.hue},80%,75%,0.9)`;
-        ctx.arc(sx, sy, r, 0, Math.PI*2);
-        ctx.fill();
-      }
-
-      ctx.globalCompositeOperation = 'source-over';
+      x.globalCompositeOperation='source-over';
       requestAnimationFrame(draw);
-    }
-    draw();
+    } draw();
   })();
 
-  /* reveal on scroll */
+  // ====== Reveal panels on scroll ======
   (function(){
-    const els = document.querySelectorAll('.appear');
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); }
-      });
-    }, {threshold: 0.08});
+    const els=[...document.querySelectorAll('.panel')];
+    const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in'); io.unobserve(e.target)}}),{threshold:.08});
     els.forEach(el=>io.observe(el));
   })();
 
-  /* card hover tilt */
+  // ====== Subtle tilt on hover ======
   (function(){
-    const cards = document.querySelectorAll('.card, .project, .profile-card');
+    const cards=document.querySelectorAll('[data-tilt]');
     cards.forEach(card=>{
-      card.addEventListener('mousemove', e=>{
-        const r = card.getBoundingClientRect();
-        const mx = e.clientX - r.left; const my = e.clientY - r.top;
-        const px = (mx / r.width - 0.5) * 10;
-        const py = (my / r.height - 0.5) * 8;
-        card.style.transform = `rotateY(${px}deg) rotateX(${-py}deg) translateZ(0)`;
-      });
-      card.addEventListener('mouseleave', ()=> card.style.transform = '');
-    });
+      card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect();const mx=e.clientX-r.left,my=e.clientY-r.top;const px=(mx/r.width-.5)*10,py=(my/r.height-.5)*8;card.style.transform=`rotateY(${px}deg) rotateX(${-py}deg)`});
+      card.addEventListener('mouseleave',()=>card.style.transform='');
+    })
   })();
+
+  // ====== i18n content ======
+  const T={
+    fr:{
+      role:"MSc Computer Science (EPFL) • Dév. logiciel • ML • Robotique",
+      intro:"Étudiante en master à l'EPFL (2025–2027). Je conçois des systèmes logiciels robustes et des pipelines ML — de la robotique temps réel aux architectures deep learning. Ouverte aux stages et collaborations.",
+      cv:"Télécharger le CV",
+      expTitle:"Expérience",
+      exp1:{when:"ERP Data Analyst Intern — Crissier, Suisse • Juil – Août 2025", desc:"Analyse d'extractions massives et validation selon des méthodologies définies; support au nettoyage des données ventes/achats/production; application de contrôles internes."},
+      exp2:{when:"Spring into Software Engineering — Glasgow, UK • Avril 2025", desc:"Hackathon Code for Good (app web de matching mentor·e/mentee, algo d'appariement); ateliers TDD, Git/GitHub; offre directe pour un stage été 2026."},
+      exp3:{when:"Software Developer — Edinburgh, UK • Sept 2024 – Avril 2025", desc:"Contribution au système de mouvement de la main d'un robot humanoïde; onboarding et mentorat des nouveaux membres."},
+      exp4:{when:"Assistante & Mentorat étudiant·e — Lausanne, Suisse • Depuis fév. 2023", desc:"Aide à l'enseignement: Numerical Analysis (Python), Calculus, Physique; mentorat hebdo de 15 étudiant·e·s."},
+      projTitle:"Projets",
+      proj1:{stack:"C • File Systems — add/extract/list", desc:"Format + utilitaires pour stocker/récupérer des images efficacement, inspiré par Facebook Haystack."},
+      proj2:{stack:"Java • JavaFX • Systèmes temps réel", desc:"Décodage ADS‑B et visualisation des trajectoires via AirSpy R2."},
+      proj3:{stack:"Python • TensorFlow • PCA", desc:"Pipeline multi‑architecture (CNN, Transformer, MLP) pour la classification fashion (expériences PCA)."},
+      eduTitle:"Éducation",
+      edu1:"EPFL — MSc Computer Science (2025–2027)",
+      edu2:"The University of Edinburgh — Exchange (2024–2025)",
+      edu3:"EPFL — BSc Communication Systems (2022–2025)",
+      courses:"Cours notables : Algorithms, Software Construction, Databases, OOP, Machine Learning, Probability/Stats, Stochastic Modeling, Digital Communications.",
+      volTitle:"Bénévolat",
+      vol1:"Students 4 Students — Lausanne (Juin – Sept 2024)",
+      vol2:"EPFelles — Vice‑présidente (Fév 2023 – Juil 2024)",
+      vol3:"Service Civil International — Nendaz (Juil 2023)",
+      skillsTitle:"Langues & Compétences"
+    },
+    en:{
+      role:"EPFL MSc Computer Science • Software Developer • ML • Robotics",
+      intro:"EPFL Master's student (2025–2027). I build robust software systems and ML pipelines — from real‑time robotics to deep learning architectures. Open to internships & collaborations.",
+      cv:"Download CV",
+      expTitle:"Experience",
+      exp1:{when:"ERP Data Analyst Intern — Crissier, Switzerland • Jul – Aug 2025", desc:"Analyzed large‑scale extractions; supported data cleansing across sales/purchasing/production; applied internal data controls."},
+      exp2:{when:"Spring into Software Engineering — Glasgow, UK • April 2025", desc:"Code for Good hackathon (mentor‑mentee matching web app; pairing algorithm); TDD & Git/GitHub workshops; direct Summer 2026 internship offer."},
+      exp3:{when:"Software Developer — Edinburgh, UK • Sept 2024 – Apr 2025", desc:"Improved the hand‑movement system of a humanoid robot; onboarded and mentored newcomers."},
+      exp4:{when:"Teaching Assistant & Student Mentor — Lausanne, Switzerland • Since Feb 2023", desc:"Assisted in Numerical Analysis (Python), Calculus and Physics; weekly mentoring for 15 CS students."},
+      projTitle:"Projects",
+      proj1:{stack:"C • File Systems — add/extract/list", desc:"Custom format + utilities to store/retrieve images efficiently, inspired by Facebook Haystack."},
+      proj2:{stack:"Java • JavaFX • Real‑Time Systems", desc:"ADS‑B decoding and trajectory visualization via AirSpy R2."},
+      proj3:{stack:"Python • TensorFlow • PCA", desc:"Multi‑architecture pipeline (CNN, Transformer, MLP) for fashion classification, with PCA experiments."},
+      eduTitle:"Education",
+      edu1:"EPFL — MSc Computer Science (2025–2027)",
+      edu2:"The University of Edinburgh — Exchange (2024–2025)",
+      edu3:"EPFL — BSc Communication Systems (2022–2025)",
+      courses:"Relevant courses: Algorithms, Software Construction, Databases, OOP, Machine Learning, Probability/Statistics, Stochastic Modeling, Digital Communications.",
+      volTitle:"Volunteering",
+      vol1:"Students 4 Students — Lausanne (June – Sept 2024)",
+      vol2:"EPFelles — Vice President (Feb 2023 – July 2024)",
+      vol3:"Service Civil International — Nendaz (July 2023)",
+      skillsTitle:"Languages & Skills"
+    }
+  };
+
+  const $=(s)=>document.querySelectorAll(s);
+  function applyLang(lang){
+    const L=T[lang];
+    $('[data-i18n]').forEach(el=>{
+      const path=el.getAttribute('data-i18n');
+      const val=path.split('.').reduce((o,k)=>o&&o[k], L);
+      if(typeof val==='string') el.textContent=val;
+    });
+    document.getElementById('frBtn').classList.toggle('active', lang==='fr');
+    document.getElementById('enBtn').classList.toggle('active', lang==='en');
+    localStorage.setItem('lang', lang);
+    // CV button: default to FR pdf for FR, EN pdf for EN
+    const cvBtn=document.getElementById('cvBtn');
+    cvBtn.setAttribute('href', lang==='fr' ? 'Imane Oujja EPFL CV.pdf' : 'Imane Oujja EPFL CV.pdf');
+  }
+  const saved=localStorage.getItem('lang')|| (navigator.language||'fr').startsWith('fr')?'fr':'en';
+  applyLang(saved);
+  document.getElementById('frBtn').onclick=()=>applyLang('fr');
+  document.getElementById('enBtn').onclick=()=>applyLang('en');
   </script>
 </body>
 </html>
